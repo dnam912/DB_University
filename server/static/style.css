@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #222222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 12px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 260px;
+}
+
+form[method="get"] {
+    width: 160px;
+}
+
+input, button {
+    padding: 10px;
+    font-size: 14px;
+}
+
+input {
+    border: 1px solid #cccccc;
+}
+
+button {
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
