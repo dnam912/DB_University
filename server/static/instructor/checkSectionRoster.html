@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <h1>Instructor Dashboard</h1>
+    <h2>{{ session["name"] }}'s Page</h2>       <!-- {{ name }} -->
+    <p>Username: {{ session["username"] }}</p>  <!-- {{ username }}-->
+    
+    <a href="/logout">Logout</a>
+    <h3>Check Section Roster</h3>
+
+    <form action="{{ url_for('check_section_roster_data') }}" method="get">
+        <label>Course ID: </label>
+                <input type="text" name ="courseid" required><br>
+        <label>Section Number: </label>
+                <input type="text" name ="sec_number" required><br>
+        <label>Semester: </label>
+                <select name="semester" required>
+                    <option value="" disabled selected>Select Semester</option>
+                    <option value="Spring">Spring</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Summer">Summer</option>
+                </select><br>
+        <label>Year: </label>
+                <select name="year" required>
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                </select><br>
+
+        <button type="submit">Submit</button>
+
+    <!-- Display roster -->
+    {% if roster is defined %}
+        <h4>Section Roster</h4>
+        {% if roster %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Last Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in roster %}
+                        <tr>
+                            <td>{{ row['last_name'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No students in this section.</p>
+        {% endif %}
+    {% endif %}
+    </form>
+    <form action = "{{ url_for('instructor')}}" method="get">
+            <button type="submit">Done</button>
+    </form>
+</body>
+</html>

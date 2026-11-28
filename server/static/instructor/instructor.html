@@ -13,5 +13,41 @@
     <p>Username: {{ session["username"] }}</p>  <!-- {{ username }}-->
     
     <a href="/logout">Logout</a>
+
+    <form action = "{{ url_for('submit_grades')}}" method="get">
+            <button type="submit">Submit Grades</button>
+    </form>
+
+    <form action = "{{ url_for('change_grades')}}" method="get">
+            <button type="submit">Change Grades</button>
+    </form>
+
+    <form action = "{{ url_for('add_student_as_advisor')}}" method="get">
+            <button type="submit">Add Student as Advisor</button>
+    </form>
+
+    <form action = "{{ url_for('remove_student_as_advisor')}}" method="get">
+            <button type="submit">Remove Student as Advisor</button>
+    </form>
+
+    <form action = "{{ url_for('modify_course_prerequisites')}}" method="get">
+            <button type="submit">Modify Course Prerequisites</button>
+    </form>
+
+    <form action = "{{ url_for('remove_student_from_section')}}" method="get">
+            <button type="submit">Remove Student from Section</button>
+    </form>
+
+    <form action = "{{ url_for('check_section_roster')}}" method="get">
+            <button type="submit">Check Section Roster</button>
+    </form>
+
+    <form action = "{{ url_for('check_sections_teaching')}}" method="get">
+            <button type="submit">Check Sections Teaching</button>
+    </form>
+
+    <form action = "{{ url_for('modify_personal_information')}}" method="get">
+            <button type="submit">Modify Information</button>
+    </form>
 </body>
 </html>

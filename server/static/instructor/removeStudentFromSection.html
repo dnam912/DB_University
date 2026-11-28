@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <h1>Instructor Dashboard</h1>
+    <h2>{{ session["name"] }}'s Page</h2>       <!-- {{ name }} -->
+    <p>Username: {{ session["username"] }}</p>  <!-- {{ username }}-->
+    
+    <a href="/logout">Logout</a>
+    <h3>Remove Student From Section</h3>
+
+    <form action="{{ url_for('remove_student_from_section_data') }}" method="post">
+        <label>Course ID: </label>
+                <input type="text" name ="courseid" required><br>
+        <label>Section Number: </label>
+                <input type="text" name ="sec_number" required><br>
+        <label>Semester: </label>
+                <select name="semester" required>
+                    <option value="" disabled selected>Select Semester</option>
+                    <option value="Spring">Spring</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Summer">Summer</option>
+                </select><br>
+        <label>Year: </label>
+                <select name="year" required>
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                </select><br>
+        <label>Student ID: </label>
+                <input type="text" name ="student_id" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if student is defined %}
+        <p>Student removed from section.</p>
+    {% endif %}
+
+    {% if error is defined %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <form action = "{{ url_for('instructor')}}" method="get">
+            <button type="submit">Done</button>
+    </form>
+</body>
+</html>

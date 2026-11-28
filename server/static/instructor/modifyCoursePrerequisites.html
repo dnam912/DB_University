@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <h1>Instructor Dashboard</h1>
+    <h2>{{ session["name"] }}'s Page</h2>       <!-- {{ name }} -->
+    <p>Username: {{ session["username"] }}</p>  <!-- {{ username }}-->
+    
+    <a href="/logout">Logout</a>
+    <h3>Modify Course Prerequisite</h3>
+
+    <form action="{{ url_for('modify_course_prerequisites_data') }}" method="post">
+        <label>Course: </label>
+                <input type="text" name ="course" required><br>
+        <label>Old Prerequisite: </label>
+                <input type="text" name ="old_prerequisite" required><br>
+        <label>New Prerequisite: </label>
+                <input type="text" name ="new_prerequisite" required><br>
+        <button type="submit">Submit</button>
+    </form>
+    {%if success is defined%}
+        <p>Prerequisite modified</p>
+    {%endif%}
+
+    {% if error is defined %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <form action = "{{ url_for('instructor')}}" method="get">
+            <button type="submit">Done</button>
+    </form>
+</body>
+</html>
